@@ -4,10 +4,26 @@ require_once 'BaseModel.php';
 
 class UserModel extends BaseModel {
 
-    public function findUserById($id) {
-        $sql = 'SELECT * FROM users WHERE id = '.$id;
-        $user = $this->select($sql);
+    
+    public function encryptId($id)
+    {
+        return base64_encode($id);
+    }
 
+   
+    public function decryptId($encryptedId)
+    {
+        return base64_decode($encryptedId);
+    }
+
+    
+
+    public function findUserById($encryptedId)
+    {
+        $decryptedId = $this->decryptId($encryptedId);  
+        $sql = 'SELECT * FROM users WHERE id = ' . $decryptedId;
+        $user = $this->select($sql);
+    
         return $user;
     }
 
@@ -37,10 +53,11 @@ class UserModel extends BaseModel {
      * @param $id
      * @return mixed
      */
-    public function deleteUserById($id) {
-        $sql = 'DELETE FROM users WHERE id = '.$id;
+    public function deleteUserById($encryptedId)
+    {
+        $decryptedId = $this->decryptId($encryptedId);  
+        $sql = 'DELETE FROM users WHERE id = ' . $decryptedId;
         return $this->delete($sql);
-
     }
 
     /**
@@ -48,14 +65,17 @@ class UserModel extends BaseModel {
      * @param $input
      * @return mixed
      */
-    public function updateUser($input) {
+    public function updateUser($input)
+    {
+        $decryptedId = $this->decryptId($input['id']);  
+    
         $sql = 'UPDATE users SET 
-                 name = "' . mysqli_real_escape_string(self::$_connection, $input['name']) .'", 
-                 password="'. md5($input['password']) .'"
-                WHERE id = ' . $input['id'];
-
+                 name = "' . mysqli_real_escape_string(self::$_connection, $input['name']) . '", 
+                 password="' . md5($input['password']) . '"
+                WHERE id = ' . $decryptedId;
+    
         $user = $this->update($sql);
-
+    
         return $user;
     }
 
@@ -65,7 +85,7 @@ class UserModel extends BaseModel {
      * @return mixed
      */
     public function insertUser($input) {
-        $sql = "INSERT INTO `app_web1`.`users` (`name`, `password`) VALUES (" .
+        $sql = "INSERT INTO `lap3`.`users` (`name`, `password`) VALUES (" .
                 "'" . $input['name'] . "', '".md5($input['password'])."')";
 
         $user = $this->insert($sql);
