@@ -1,0 +1,180 @@
+@color-green: #008e44;
+@secondary-color: #3f3f3f;
+@card-bg-color: #fff;
+@card-text-color: #333;
+@header-color: #3b5998; // Chỉnh sửa nếu cần
+@button-color: @color-green;
+@button-hover-color: darken(@color-green, 10%);
+@font-family: 'Arial', sans-serif;
+@border-color: #e0e0e0;
+
+@background-color: #f9f9f9;
+@padding-body: 0;
+@padding-type-3018: 20px;
+@padding-share-section: 20px;
+@padding-form-elements: 10px;
+@padding-post-comment: 10px 20px;
+
+// Thêm các biến màu sắc
+@share-section-bg-color: #cfcdcd; // Màu nền của share-section
+@icon-facebook-bg: #3b5998; // Facebook blue
+@icon-twitter-bg: #1da1f2; // Twitter blue
+@icon-linkedin-bg: #0077b5; // LinkedIn blue
+@icon-skype-bg: #00f01c; // Skype blue
+
+// Thêm các biến margin và font-size
+@margin-bottom: 20px;
+@margin-right: 15px;
+@margin-left: 20px;
+@margin-top: 20px;
+@font-size-small: 14px;
+@font-size-medium: 18px;
+@font-size-large: 35px;
+
+.type-3018{
+
+    .share-section {
+        display: flex;
+        padding: @padding-share-section;
+        background-color: @share-section-bg-color; // Sử dụng biến cho background-color
+        align-items: center;
+        gap: 10px;
+        margin-bottom: @margin-bottom; // Sử dụng biến cho margin-bottom
+        margin-top: @margin-top; // Sử dụng biến cho margin-top
+        border-radius: 5px;
+
+        .text-share {
+            color: @header-color;
+            font-size: @font-size-small; // Sử dụng biến cho font-size
+            font-weight: bold;
+        }
+
+        .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;    // Make it a circle
+            color: white;          // Icon color
+            font-size: 20px;      // Có thể tạo biến nếu cần
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+
+            &.facebook {
+                background-color: @icon-facebook-bg;  // Sử dụng biến cho Facebook blue
+            }
+
+            &.twitter {
+                background-color: @icon-twitter-bg;  // Sử dụng biến cho Twitter blue
+            }
+
+            &.linkedin {
+                background-color: @icon-linkedin-bg;  // Sử dụng biến cho LinkedIn blue
+            }
+
+            &.skype {
+                background-color: @icon-skype-bg;  // Sử dụng biến cho Skype blue
+            }
+
+            &:hover {
+                opacity: 0.8;  // Add a slight transparency on hover
+            }
+
+            i {
+                display: block; // Ensure icon takes full space
+            }
+        }
+    }
+
+    .author-section {
+        display: flex;
+        align-items: center;
+        border-radius: 10px;
+        margin-bottom: @margin-bottom; // Sử dụng biến cho margin-bottom
+
+        .author-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: @margin-right; // Sử dụng biến cho margin-right
+        }
+
+        .author-info {
+            .header-author {
+                margin: 0;
+                color: @header-color;
+                font-size: @font-size-medium; // Sử dụng biến cho font-size
+                font-weight: bold;
+            }
+
+            .desc-author {
+                margin: 5px 0 0 0;
+                color: @card-text-color; // Sửa để sử dụng biến
+                font-size: @font-size-small; // Sử dụng biến cho font-size
+            }
+        }
+    }
+
+    .comment-section {
+        border-radius: 10px;
+
+        .header-comment {
+            margin: 0 0 10px 0;
+            color: @header-color;
+            font-size: @font-size-large; // Sử dụng biến cho font-size
+            font-weight: bold;
+        }
+
+        .content-comment {
+            font-size: @font-size-small; // Sử dụng biến cho font-size
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+
+            .desc-comment, .input-comment {
+                padding: @padding-form-elements;
+                background-color: @border-color;
+                border-radius: 5px;
+                border: 1px solid @border-color;
+                width: 100%;
+                box-sizing: border-box;
+                margin: 0;
+            }
+
+            textarea {
+                height: 150px;
+                resize: none;
+            }
+
+            .checkbox {
+                display: flex;
+                align-items: center;
+                margin-left: @margin-left; // Sử dụng biến cho margin-left
+                gap: 10px;
+
+                label {
+                    font-size: @font-size-small; // Sử dụng biến cho font-size
+                    
+                }
+            }
+
+            .post-comment {
+                padding: @padding-post-comment; // Sử dụng biến cho padding post comment
+                background-color: @button-color;
+                width: 20%;    
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: @button-hover-color;
+                }
+            }
+        }
+    }
+}
